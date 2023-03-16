@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script type="text/javascript" src="https://jqwidgets.com/jquery-widgets-demo/scripts/jquery-1.11.1.min.js"></script>
+
+    <script type="text/javascript" src="https://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqx-all.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" />
+
+</head>
+<body>
+    <h2> Data Employees </h2>
+
+    <div id="gridEmployee" style="margin:20px auto;"></div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            // In this part, you need to prepare your data
+            var source =
+            {
+                datatype: "json",
+
+                // Here you will declare all fields that must be used in the grid
+                datafields: [
+
+                    { name: 'EmployeeID', type: 'number' },
+                    { name: 'FirstName', type: 'string' },
+                    { name: 'LastName', type: 'string' },
+                    { name: 'Gender', type: 'string' },
+                    { name: 'Designation', type: 'string' },
+                    { name: 'Salary', type: 'number' },
+                    { name: 'City', type: 'string' },
+                    { name: 'Country', type: 'string' }
+
+                ],
+                // call the action which retrieve data employees in json format
+                url: 'https://localhost:44393/odata/Employees/'
+            };
+
+            var dataAdapter = new $.jqx.dataAdapter(source);
+
+            // displaying data in the grid with jqxGrid
+            $("#gridEmployee").jqxGrid(
+                {
+                    width: 800,
+                    source: dataAdapter,
+                    pageable: true,
+                    sortable: true,
+
+                    columns: [
+
+                        { text: "Employee ID", datafield: "EmployeeID" },
+                        { text: "FirstName", datafield: "FirstName" },
+                        { text: "LastName", datafield: "LastName" },
+                        { text: "Gender", datafield: "Gender" },
+                        { text: "Designation", datafield: "Designation" },
+                        { text: "Salary", datafield: "Salary" },
+                        { text: "City", datafield: "City" },
+                        { text: "Country", datafield: "Country" }
+
+                    ]
+                });
+        });</script>
+</body>
+</html>
